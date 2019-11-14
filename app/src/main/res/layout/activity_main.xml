@@ -14,17 +14,43 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/operation"
+        android:layout_width="0dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="32dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/newnumber"
+        app:layout_constraintEnd_toStartOf="@+id/newnumber" />
+
+    <EditText
+        android:id="@+id/newnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result" />
 
     <Button
         android:id="@+id/button0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="0"
         app:layout_constraintStart_toStartOf="@+id/button1"
         app:layout_constraintTop_toBottomOf="@+id/button1" />
@@ -34,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="6"
         app:layout_constraintBaseline_toBaselineOf="@+id/button5"
         app:layout_constraintStart_toEndOf="@+id/button5" />
@@ -44,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="/"
         app:layout_constraintBaseline_toBaselineOf="@+id/button9"
         app:layout_constraintStart_toEndOf="@+id/button9" />
@@ -54,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="10dp"
         android:text="*"
         app:layout_constraintBaseline_toBaselineOf="@+id/button6"
         app:layout_constraintStart_toEndOf="@+id/button6" />
@@ -64,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="-"
         app:layout_constraintBaseline_toBaselineOf="@+id/button3"
         app:layout_constraintStart_toEndOf="@+id/button3" />
@@ -74,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="3"
         app:layout_constraintBaseline_toBaselineOf="@+id/button2"
         app:layout_constraintStart_toEndOf="@+id/button2" />
@@ -84,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="5"
         app:layout_constraintBaseline_toBaselineOf="@+id/button4"
         app:layout_constraintStart_toEndOf="@+id/button4" />
@@ -94,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="9"
         app:layout_constraintBaseline_toBaselineOf="@+id/button8"
         app:layout_constraintStart_toEndOf="@+id/button8" />
@@ -104,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="8"
         app:layout_constraintBaseline_toBaselineOf="@+id/button7"
         app:layout_constraintStart_toEndOf="@+id/button7" />
@@ -114,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="."
         app:layout_constraintBaseline_toBaselineOf="@+id/button0"
         app:layout_constraintStart_toEndOf="@+id/button0" />
@@ -124,7 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="2"
         app:layout_constraintBaseline_toBaselineOf="@+id/button1"
         app:layout_constraintStart_toEndOf="@+id/button1" />
@@ -134,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newnumber" />
@@ -144,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="4"
         app:layout_constraintStart_toStartOf="@+id/button7"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
@@ -154,7 +180,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="="
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonDot"
         app:layout_constraintStart_toEndOf="@+id/buttonDot" />
@@ -164,7 +190,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="+"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonEquals"
         app:layout_constraintStart_toEndOf="@+id/buttonEquals" />
@@ -174,31 +200,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:width="48dp"
+        android:width="15dp"
         android:text="1"
         app:layout_constraintStart_toStartOf="@+id/button4"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <TextView
-        android:id="@+id/operation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/newnumber"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/newnumber" />
-
-    <EditText
-        android:id="@+id/newnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:inputType="numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
