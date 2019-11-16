@@ -61,5 +61,27 @@ class MainActivity : AppCompatActivity() {
         button8.setOnClickListener(listener)
         button9.setOnClickListener(listener)
         buttonDot.setOnClickListener(listener)
+
+        // assign a listener to the operations button
+
+        val opListener = View.OnClickListener{v ->
+            val op = (v as Button).text.toString()
+            val value = newNumber.text.toString()
+            if(value.isNotEmpty()){
+                performOperation(value, op)
+            }
+            pendingOperation = op
+            displayOperation.text = pendingOperation
+        }
+
+        buttonEquals.setOnClickListener(opListener)
+        buttonDivide.setOnClickListener(opListener)
+        buttonMultiply.setOnClickListener(opListener)
+        buttonMinus.setOnClickListener(opListener)
+        buttonPlus.setOnClickListener(opListener)
+
+    }
+    private fun performOperation(value:String, operation:String){
+        displayOperation.text = operation
     }
 }
