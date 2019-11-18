@@ -6,15 +6,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var result:EditText
-    private lateinit var newNumber:EditText
-    private val displayOperation by lazy(LazyThreadSafetyMode.NONE) {findViewById<TextView>(R.id.operation)}
+    private lateinit var result: EditText
+    private lateinit var newNumber: EditText
+    private val displayOperation by lazy(LazyThreadSafetyMode.NONE) { findViewById<TextView>(R.id.operation) }
 
     // variables to hold the operands and type of calculation
-    private var operand1:Double? = null
-    private var operand2: Double = 0.0
+    private var operand1: Double? = null
+
     private var pendingOperation = "="
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,17 +25,17 @@ class MainActivity : AppCompatActivity() {
         newNumber = findViewById(R.id.newnumber)
 
         // Data input buttons
-        val button0:Button = findViewById(R.id.button0)
-        val button1:Button = findViewById(R.id.button1)
-        val button2:Button = findViewById(R.id.button2)
-        val button3:Button = findViewById(R.id.button3)
-        val button4:Button = findViewById(R.id.button4)
-        val button5:Button = findViewById(R.id.button5)
-        val button6:Button = findViewById(R.id.button6)
-        val button7:Button = findViewById(R.id.button7)
-        val button8:Button = findViewById(R.id.button8)
-        val button9:Button = findViewById(R.id.button9)
-        val buttonDot:Button = findViewById(R.id.buttonDot)
+        val button0: Button = findViewById(R.id.button0)
+        val button1: Button = findViewById(R.id.button1)
+        val button2: Button = findViewById(R.id.button2)
+        val button3: Button = findViewById(R.id.button3)
+        val button4: Button = findViewById(R.id.button4)
+        val button5: Button = findViewById(R.id.button5)
+        val button6: Button = findViewById(R.id.button6)
+        val button7: Button = findViewById(R.id.button7)
+        val button8: Button = findViewById(R.id.button8)
+        val button9: Button = findViewById(R.id.button9)
+        val buttonDot: Button = findViewById(R.id.buttonDot)
 
         // Operation buttons
         val buttonEquals = findViewById<Button>(R.id.buttonEquals)
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val buttonMinus = findViewById<Button>(R.id.buttonMinus)
         val buttonPlus = findViewById<Button>(R.id.buttonPlus)
 
-        val listener = View.OnClickListener{v ->
+        val listener = View.OnClickListener { v ->
             val b = v as Button
             newNumber.append(b.text)
         }
@@ -64,12 +65,16 @@ class MainActivity : AppCompatActivity() {
 
         // assign a listener to the operations button
 
-        val opListener = View.OnClickListener{v ->
+        val opListener = View.OnClickListener { v ->
             val op = (v as Button).text.toString()
-            val value = newNumber.text.toString()
-            if(value.isNotEmpty()){
+            try {
+                val value = newNumber.text.toString().toDouble()
                 performOperation(value, op)
+            } catch (e: NumberFormatException) {
+                newNumber.setText("")
             }
+
+
             pendingOperation = op
             displayOperation.text = pendingOperation
         }
@@ -81,27 +86,28 @@ class MainActivity : AppCompatActivity() {
         buttonPlus.setOnClickListener(opListener)
 
     }
-    private fun performOperation(value:String, operation:String){
+
+    private fun performOperation(value: Double, operation: String) {
 //        displayOperation.text = operation
 
-        if(operand1 == null){
-            operand1 = value.toDouble()
-        }else {
-            operand2 = value.toDouble()
+        if (operand1 == null) {
+            operand1 = value
+        } else {
 
-            if(pendingOperation == "=="){
+
+            if (pendingOperation == "==") {
                 pendingOperation = operation
             }
-            when(pendingOperation){
-                "=" -> operand1 = operand2
-                "/" -> if(operand2 == 0.0){
-                    operand1 = Double.NaN // handles attempt to divide by zero
-                }else {
-                    operand1 = operand1!! / operand2
+            when (pendingOperation) {
+                "=" -> operand1 = value
+                "/" -> operand1 = if (value == 0.0) {
+                    Double.NaN // handles attempt to divide by zero
+                } else {
+                    operand1!! / value
                 }
-                "*" -> operand1 = operand1!! * operand2
-                "-" -> operand1 = operand1!! - operand2
-                "+" -> operand1 = operand1!! + operand2
+                "*" -> operand1 = operand1!! * value
+                "-" -> operand1 = operand1!! - value
+                "+" -> operand1 = operand1!! + value
             }
         }
         result.setText(operand1.toString())
